@@ -22,6 +22,9 @@ if "weekly_arrangements" not in st.session_state:
 
 # === HEADER WITH LOGO, SCHOOL NAME, DATE ===
 today = datetime.today().strftime("%A, %d %B %Y")
+today_day_name = datetime.today().strftime('%A')
+selected_day = today_day_name
+
 st.image("KV logo.png", use_container_width =True)
 st.markdown(f"""
     <div style='text-align: center; padding: 10px;'>
@@ -35,7 +38,7 @@ st.markdown(f"""
 # === SIDEBAR ===
 st.sidebar.title("Teacher Arrangement Generator")
 file_input = st.sidebar.file_uploader("Upload updated 'KV TT.xlsx'", type=["xlsx"])
-selected_day = st.sidebar.selectbox("Select Day", ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
+# selected_day = st.sidebar.selectbox("Select Day", ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
 
 if file_input:
     st.session_state.uploaded_file = file_input
