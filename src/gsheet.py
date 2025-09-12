@@ -1,17 +1,10 @@
-import os
-import json
 import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
-from google.oauth2.service_account import Credentials
 
 def get_gsheet_client():
-    creds_json = os.getenv("GCP_CREDENTIALS")
-    if creds_json is None:
-        raise ValueError("❌ GCP_CREDENTIALS not found. Did you set the GitHub secret?")
-    creds_dict = json.loads(creds_json)
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
-
+    creds = ServiceAccountCredentials.from_json_keyfile_name("../credentials.json", scope)
     client = gspread.authorize(creds)
     return client
 
