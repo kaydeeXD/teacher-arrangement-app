@@ -4,6 +4,7 @@ from google.oauth2.service_account import Credentials
 import pandas as pd
 import streamlit as st
 
+@st.cache_resource
 def get_gsheet_client():
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     # creds = ServiceAccountCredentials.from_json_keyfile_name("../credentials.json", scope)
