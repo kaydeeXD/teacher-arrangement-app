@@ -571,7 +571,6 @@ elif page == "📊 Arrangement Tracker":
             st.info("No arrangements found for last week.")
         else:
             last_week_dates = get_last_week_dates()
-            st.write("📅 Looking for these dates:", last_week_dates)  # debug
             for date in last_week_dates:
                 day_group = weekly_log_df[weekly_log_df["Date"].str.strip() == date]
                 if not day_group.empty:
@@ -582,13 +581,16 @@ elif page == "📊 Arrangement Tracker":
                     st.markdown("---")
 
     elif view_option == "Month Wise":
-        today = datetime.today()
-        month_name = today.strftime("%B")
-        ws = get_or_create_worksheet(sheet_id=SPREADSHEET_ID, worksheet_name=f"{month_name}Log")
+        month_options = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ]
+        selected_month = st.selectbox("📅 Select month", month_options, index=datetime.today().month - 1)
+        ws = get_or_create_worksheet(sheet_id=SPREADSHEET_ID, worksheet_name=f"{selected_month}Log")
         month_df = load_df_from_gsheet(ws)
 
         if month_df.empty:
-            st.info("No arrangements found for this month.")
+            st.info(f"No arrangements found for **{selected_month}**.")
         else:
             for date, group in month_df.groupby("Date"):
                 day_name = group["Day"].iloc[0] if "Day" in group.columns else ""
