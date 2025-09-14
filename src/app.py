@@ -571,6 +571,7 @@ elif page == "📊 Arrangement Tracker":
             st.info("No arrangements found for last week.")
         else:
             last_week_dates = get_last_week_dates()
+            st.write("📅 Looking for these dates:", last_week_dates)  # debug
             for date in last_week_dates:
                 day_group = weekly_log_df[weekly_log_df["Date"].str.strip() == date]
                 if not day_group.empty:
