@@ -575,7 +575,7 @@ elif page == "📊 Arrangement Tracker":
                 day_group = weekly_log_df[weekly_log_df["Date"] == date]
                 if not day_group.empty:
                     day_name = day_group["Day"].iloc[0]
-                    st.markdown(f"### 📌 {date}")
+                    st.markdown(f"### 📌 {date.strftime('%A, %d %B %Y')}")
                     display_df = day_group.drop(columns=["Date", "Day"]).reset_index(drop=True)
                     st.dataframe(display_df, use_container_width=True)
                     st.markdown("---")

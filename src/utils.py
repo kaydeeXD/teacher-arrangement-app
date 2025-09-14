@@ -45,6 +45,6 @@ def get_current_week_dates():
 
 def get_last_week_dates():
     """Return list of dates (Mon-Sat) for last week."""
-    today = datetime.today()
+    today = datetime.today().date()
     start = today - timedelta(days=today.weekday() + 7)
-    return [(start + timedelta(days=i)).strftime("%A, %d %B %Y") for i in range(6)]  # Mon-Sat
+    return [(start + timedelta(days=i)) for i in range(6)]  # Mon-Sat
