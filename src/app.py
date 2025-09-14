@@ -58,7 +58,7 @@ if "generated_arrangement" not in st.session_state:
             st.toast("✅ Previous session data restored.")
         else:
             PersistentStateWorksheet.clear()
-            st.toast("⚠️ Outdated state found. Cleared stale data.")
+            # st.toast("⚠️ Outdated state found. Cleared stale data.")
     else:
         st.toast("⚠️ No session data found.")
 
