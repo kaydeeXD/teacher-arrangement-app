@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import pandas as pd
 from datetime import datetime
 from io import BytesIO
@@ -70,7 +70,8 @@ today = datetime.today().strftime("%A, %d %B %Y")
 day = datetime.today().strftime("%A")
 is_sunday = (day == "Sunday")
 selected_day = day
-st.image("../KV logo.png", use_container_width=True)
+logo_path = Path(__file__).parent.parent / "assets" / "KV logo.png"
+st.image(str(logo_path), use_container_width=True)
 st.markdown(f"""
     <div style='text-align: center; padding: 10px;'>
         <h1 style='color: #1f4e79;'>🧑‍🏫 Teacher Arrangement System</h1>
@@ -96,8 +97,9 @@ if page == "🏠 Home":
         file_input = st.session_state.uploaded_file
         st.sidebar.info("ℹ️ Using previously uploaded file.")
     else:
-        if os.path.exists("../KV TT.xlsx"):
-            file_input = "../KV TT.xlsx"
+        file_path = Path(__file__).parent.parent / "assets" / "KV TT.xlsx"
+        if file_path.exists():
+            file_input = str(file_path)
             st.sidebar.info("ℹ️ Using default file: 'KV TT.xlsx'")
         else:
             st.sidebar.error("❌ No file uploaded and default file not found.")
