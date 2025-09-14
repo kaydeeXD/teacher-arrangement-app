@@ -548,7 +548,7 @@ if page == "🏠 Home":
 # Arrangement Tracker Page
 elif page == "📊 Arrangement Tracker":
     st.markdown("### 🗂️ Arrangement Tracker")
-    view_option = st.radio("Select View", ["Current Week", "Last Week", "Month Wise"], horizontal=True)
+    view_option = st.radio("🔍 Select View", ["Current Week", "Last Week", "Month Wise"], horizontal=True)
 
     if view_option == "Current Week":
         weekly_log_df = load_weekly_log(SPREADSHEET_ID)
