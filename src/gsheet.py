@@ -24,6 +24,7 @@ def save_df_to_gsheet(df, worksheet):
     worksheet.clear()
     worksheet.update([df.columns.values.tolist()] + df.values.tolist())
 
+@st.cache_data(ttl=60)
 def load_df_from_gsheet(worksheet):
     data = worksheet.get_all_values()
     if not data:

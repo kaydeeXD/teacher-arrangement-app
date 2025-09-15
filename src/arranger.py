@@ -17,9 +17,9 @@ def generate_arrangement(absent_dict, absence_reason_dict, selected_periods, day
 
     for absent_teacher, absence_type in absent_dict.items():
         if absence_type == "1st half":
-            teacher_schedule = day_df[(day_df["Teacher"] == absent_teacher) & (day_df["Period"].isin(range(5, 9)))]
-        elif absence_type == "2nd half":
             teacher_schedule = day_df[(day_df["Teacher"] == absent_teacher) & (day_df["Period"].isin(range(1, 5)))]
+        elif absence_type == "2nd half":
+            teacher_schedule = day_df[(day_df["Teacher"] == absent_teacher) & (day_df["Period"].isin(range(5, 9)))]
         else:
             teacher_schedule = day_df[(day_df["Teacher"] == absent_teacher)]
 
