@@ -1,7 +1,9 @@
 # Teacher Arrangement System
 
 ## Overview
-The Teacher Arrangement System is a web application designed to facilitate the management of teacher arrangements based on their availability and timetable. The application allows users to upload a timetable, specify absent teachers, and generate substitute arrangements efficiently.
+The Teacher Arrangement System is a web application designed to facilitate the management of teacher arrangements in Kendriya Vidyalaya Kisthwar based on their availability and timetable. The application allows users to upload a timetable, specify absent teachers, and generate substitute arrangements efficiently.
+
+👉 Live Web App: https://kvkishtwararrangement.streamlit.app/
 
 ## Features
 - Upload and parse timetable Excel files.
@@ -20,14 +22,14 @@ teacher-arrangement-system
 │   ├── persistence.py       # Manages application state and logs
 │   ├── utils.py             # Utility functions
 │   └── constants.py         # Constants used throughout the application
-├── tests
-│   └── test_arranger.py     # Unit tests for arrangement generation
+├── assets
+│   └── KV logo.png          # Logo png
+│   └── KV TT.xlsx           # Default Time table
 ├── .streamlit
 │   └── config.toml          # Configuration settings for Streamlit
-├── requirements.txt          # Project dependencies
-├── .gitignore                # Files and directories to ignore by Git
-├── credentials.json.sample   # Sample configuration for Google Sheets API credentials
-└── README.md                 # Documentation for the project
+├── requirements.txt         # Project dependencies
+├── .gitignore               # Files and directories to ignore by Git
+└── README.md                # Documentation for the project
 ```
 
 ## Installation
