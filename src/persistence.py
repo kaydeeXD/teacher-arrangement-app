@@ -2,6 +2,7 @@ import pandas as pd
 from datetime import datetime
 from gspread_dataframe import set_with_dataframe, get_as_dataframe
 from gsheet import save_df_to_gsheet, load_df_from_gsheet, get_or_create_worksheet
+from io import StringIO
 
 # -----------------------------
 # Weekly Log Persistence
@@ -96,7 +97,7 @@ def load_state_from_sheet(worksheet):
     # Load suggestions_df back from S1
     cell_val = worksheet.acell("S1").value
     if cell_val:
-        suggestions_df = pd.read_json(cell_val, orient="split")
+        suggestions_df = pd.read_json(StringIO(cell_val), orient="split")
     else:
         suggestions_df = pd.DataFrame(columns=["Absent Teacher", "Period", "Class", "Suggested Teachers"])
     
