@@ -2,8 +2,8 @@ import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
 import streamlit as st
-import json
 
+@st.cache_resource
 def get_gsheet_client():
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     creds_dict = st.secrets["gcp_service_account"]
@@ -11,6 +11,7 @@ def get_gsheet_client():
     client = gspread.authorize(creds)
     return client
 
+@st.cache_resource
 def get_or_create_worksheet(sheet_id, worksheet_name, rows=1000, cols=20):
     client = get_gsheet_client()
     sheet = client.open_by_key(sheet_id)
@@ -25,8 +26,8 @@ def save_df_to_gsheet(df, worksheet):
     worksheet.update([df.columns.values.tolist()] + df.values.tolist())
 
 @st.cache_data(ttl=60)
-def load_df_from_gsheet(worksheet):
-    data = worksheet.get_all_values()
+def load_df_from_gsheet(_worksheet):
+    data = _worksheet.get_all_values()
     if not data:
         return pd.DataFrame()
     headers = data[0]
