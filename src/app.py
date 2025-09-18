@@ -71,7 +71,7 @@ day = datetime.today().strftime("%A")
 is_sunday = (day == "Sunday")
 selected_day = day
 logo_path = Path(__file__).parent.parent / "assets" / "KV logo.png"
-st.image(str(logo_path), use_container_width=True)
+st.image(str(logo_path), width="stretch")
 st.markdown(f"""
     <div style='text-align: center; padding: 10px;'>
         <h1 style='color: #1f4e79;'>🧑‍🏫 Teacher Arrangement System</h1>
@@ -178,7 +178,7 @@ if page == "🏠 Home":
         # Show Final Arrangement Table if It Exists in Session State
         if "generated_arrangement" in st.session_state:
             st.subheader(f"📋 {today} Arrangements")
-            st.dataframe(st.session_state["generated_arrangement"], use_container_width=True)
+            st.dataframe(st.session_state["generated_arrangement"], width="stretch")
 
         if st.button("🚀 Generate Arrangement"):
             output_df, suggestions_df = generate_arrangement(
@@ -187,7 +187,7 @@ if page == "🏠 Home":
             )
             st.success("✅ Arrangement Generated")
             st.subheader("📋 Arrangements")
-            st.dataframe(output_df, use_container_width=True)
+            st.dataframe(output_df, width="stretch")
 
             # Update session state
             st.session_state["generated_arrangement"] = output_df
@@ -279,7 +279,7 @@ if page == "🏠 Home":
             if conflict_rows:
                 conflict_df = pd.DataFrame(conflict_rows)
                 st.error("🚨 Time-slot conflicts detected!")
-                st.dataframe(conflict_df, use_container_width=True)
+                st.dataframe(conflict_df, width="stretch")
             else:
                 st.success("✅ No time-slot conflicts detected.")
 
@@ -412,7 +412,7 @@ if page == "🏠 Home":
                     pivot_df = editable_df.drop(columns=["Absent Teacher"])
                     pivot_df.insert(0, "Class", editable_df["Absent Teacher"])
                     pivot_df.rename(columns={"Class": "Absent Teacher"}, inplace=True)
-                    st.dataframe(pivot_df, use_container_width=True)
+                    st.dataframe(pivot_df, width="stretch")
 
                     st.markdown("### ⚠️ Conflict Report")
                     assigned_periods = {}
@@ -437,7 +437,7 @@ if page == "🏠 Home":
                     if conflict_rows:
                         conflict_df = pd.DataFrame(conflict_rows)
                         st.error("🚨 Time-slot conflicts detected!")
-                        st.dataframe(conflict_df, use_container_width=True)
+                        st.dataframe(conflict_df, width="stretch")
                     else:
                         st.success("✅ No time-slot conflicts detected.")
 
@@ -562,7 +562,7 @@ elif page == "📊 Arrangement Tracker":
                     day_name = day_group["Day"].iloc[0]
                     st.markdown(f"### 📌 {date}")
                     display_df = day_group.drop(columns=["Date", "Day"]).reset_index(drop=True)
-                    st.dataframe(display_df, use_container_width=True)
+                    st.dataframe(display_df, width="stretch")
                     st.markdown("---")
 
     elif view_option == "Last Week":
@@ -577,7 +577,7 @@ elif page == "📊 Arrangement Tracker":
                     day_name = day_group["Day"].iloc[0]
                     st.markdown(f"### 📌 {date}")
                     display_df = day_group.drop(columns=["Date", "Day"]).reset_index(drop=True)
-                    st.dataframe(display_df, use_container_width=True)
+                    st.dataframe(display_df, width="stretch")
                     st.markdown("---")
 
     elif view_option == "Month Wise":
@@ -596,5 +596,5 @@ elif page == "📊 Arrangement Tracker":
                 day_name = group["Day"].iloc[0] if "Day" in group.columns else ""
                 st.markdown(f"### 📌 {date}")
                 display_df = group.drop(columns=["Date", "Day"], errors="ignore").reset_index(drop=True)
-                st.dataframe(display_df, use_container_width=True)
+                st.dataframe(display_df, width="stretch")
                 st.markdown("---")
